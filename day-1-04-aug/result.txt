@@ -1,0 +1,24 @@
+Scanned Range: 10.129.166.0/24
+Hosts Up: 2 (10.129.166.172, 10.129.166.7)
+
+IP: 10.129.166.172
+- Port 53/tcp open (domain, dnsmasq 2.51)
+
+IP: 10.129.166.7 (local machine)
+- Port 5000/tcp open (rtsp, AirTunes-like service)
+- Port 7000/tcp open (rtsp, AirTunes-like service)
+
+
+Research:
+
+Port 53 (dnsmasq 2.51 on 10.129.166.172): DNS server for name resolution. Dnsmasq is lightweight, often in routers/hotspots for local caching.
+	•	Ports 5000/7000 (rtsp/AirTunes on 10.129.166.7): RTSP for media streaming. Responses mention “AirTunes” (Apple’s old AirPlay protocol), possibly from macOS sharing or a daemon. The 403 Forbidden suggests access control.
+	•	Knowledge: Use sites like IANA port list or SpeedGuide.net for research. Unrecognized fingerprints (as noted) mean submit to Nmap for community updates.
+
+Potential Security Risks:
+
+Port 53: DNS amplification attacks (spoofed queries for DDoS), cache poisoning (fake responses), or unauthorized queries if not firewalled.
+	•	Ports 5000/7000: Buffer overflows in RTSP (e.g., CVE-2018-4013), unauthorized media access, or exploits if outdated (AirTunes has had vulns like CVE-2020-9839). On your Mac, this could expose it to local attacks.
+	•	Overall: Minimal exposure in a hotspot (only 2 hosts), but risks increase if connected to untrusted devices. e.g., man-in-the-middle via fake hotspots.
+
+    
