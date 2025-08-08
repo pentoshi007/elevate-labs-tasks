@@ -1,0 +1,26 @@
+Identify local IP and interface (10.x range expected)
+
+ipconfig getifaddr en0
+ifconfig en0
+Update macOS (UI recommended for major)
+System Settings > General > Software Update (install macOS 15.6)
+Update via command line (optional minor/security updates)
+
+softwareupdate --install --all
+Update Homebrew packages
+
+brew update && brew upgrade
+Update Node.js to 18 LTS ≥18.20.6
+
+brew install node@18
+brew link --overwrite --force node@18
+node -v
+Update MySQL to 8.0.43
+
+brew upgrade mysql
+mysql --version
+After installing Firefox 141.x, verify in About Firefox
+VMware Fusion – Check for updates in app or reinstall 13.6.3 DMG
+Reduce exposure (UI)
+System Settings > General > Sharing: disable AirPlay Receiver and other unneeded services
+Re-scan in Nessus (UI at https://localhost:8834)

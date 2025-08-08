@@ -1,0 +1,184 @@
+Day 3 — Analyze Nessus results, decide fixes, and prepare deliverables
+
+Below is a focused action plan and ready-to-use files based on the attached Nessus Essentials scan exports. The priorities are driven by severity, exploitability (EPSS/VPR when available), and vendor guidance.
+What the scan shows at a glance
+
+    OS: macOS Sequoia 15.5; Apple released 15.6 with many security fixes, including issues flagged as exploited in the wild.
+
+Browser: Firefox 136.0.1 installed; multiple advisories require upgrading to 141.x (current latest stream is 141.0.3 as of Aug 7, 2025).
+
+    Runtime: Node.js 18.12.1 installed; multiple critical bundles require upgrading to ≥18.20.6[4th report attachment shows advisory table, see plugins].
+
+    DB: MySQL 8.0.36 installed; Oracle CPUs require upgrading to ≥8.0.42/8.0.43, with interim advisories including January and July cycles[2nd report PDF “Patch Report” plus plugin details].
+
+    VMware Fusion: 13.6.0 installed; VMware advisory requires 13.6.3 for HGFS info disclosure (CVE-2025-22226)[2nd report PDF shows VMSA-2025-0004].
+
+    mDNS services visible (AirPlay/RAOP) via Bonjour; consider limiting advertisement on untrusted networks[scan HTML list].
+
+Key vendor facts to justify upgrades:
+
+    macOS Sequoia 15.6 released July 29, 2025 with numerous fixes (WebKit, Security, kernel-adjacent components). Several tracked by govCERT/CERT advisories urge immediate update due to active exploitation like CVE-2025-6558 tied to Chrome’s ANGLE/GPU path also affecting macOS release bundles.
+
+Firefox 141 line is the current stable; 141.0.3 released Aug 7, 2025.
+
+    These updates align with Nessus “Patch Report” recommendations.
+
+Immediate next steps (in order)
+
+    Update macOS to 15.6
+
+    Reason: Apple’s 15.6 fixes many CVEs; CERT/government advisories highlight active exploitation and recommend immediate patching.
+
+How: System Settings > General > Software Update > Update to macOS Sequoia 15.6.
+
+    Update Firefox to 141.x (current latest 141.0.3)
+
+    Reason: Multiple critical advisories in the 136–141 window; latest stream is 141.0.3 (Aug 7, 2025).
+
+How (Mac App Store users): Open App Store > Updates > Firefox.
+
+How (direct): Download current installer from Mozilla and replace Firefox.app.
+
+    Update Node.js from 18.12.1 to ≥18.20.6 (LTS)
+
+    Reason: Multiple critical bundles (2023–2025) require 18.20.6+ per Nessus plugins; brings fixes across HTTP/2, permission model, crypto, etc. (scan shows many impacted CVEs).
+
+    How (Homebrew):
+
+        brew update
+
+        brew install node@18
+
+        brew link --overwrite --force node@18
+
+        Confirm: node -v should report v18.20.6+.
+
+    Update MySQL from 8.0.36 to ≥8.0.43 (latest July 2025 CPU track)
+
+    Reason: “Patch Report” lists multiple CPUs; jumping to the latest 8.0.43 satisfies 8.0.40/41/42 advisories and July 2025 CPU[scan HTML “Patch Report” table and plugin outputs].
+
+
+    How (Homebrew if used):
+
+        brew update
+
+        brew upgrade mysql
+
+        Verify: mysqld --version or mysql --version should show 8.0.43.
+
+    Update VMware Fusion from 13.6.0 to 13.6.3
+
+    Reason: VMSA-2025-0004 HGFS information disclosure (CVE-2025-22226) with known-exploited tags calls for 13.6.3[scan PDF plugin 222492 and table].
+
+    How: VMware Fusion > Check for Updates or download latest 13.6.3 installer and replace app.
+
+    Reduce local service exposure (mDNS/Bonjour)
+
+    Reason: mDNS reveals AirPlay/RAOP service details; on untrusted networks, disable or limit.
+
+    How (macOS):
+
+        System Settings > General > Sharing: turn off AirPlay Receiver if not needed.
+
+        For stricter environments, block inbound UDP:5353 on untrusted interfaces (via firewall or network profile).
+
+    Reboot, then re-run Nessus authenticated scan
+
+    Reason: Validate remediation and clear “Patch Report” actions.
+
+Commands for MacBook Air M1 (record these in notes/commands.txt)
+
+    System info (IP and mask context):
+
+        ipconfig getifaddr en0
+
+        ifconfig en0
+
+    Update stack:
+
+        softwareupdate --install --all (optional; UI method preferred for major version)
+
+        brew update && brew upgrade
+
+        brew install node@18 && brew link --overwrite --force node@18
+
+        node -v
+
+        mysql --version
+
+    Limit services (examples):
+
+        System Settings > General > Sharing: disable services not used (AirPlay Receiver, Screen Sharing, Remote Login).
+
+    Re-scan:
+
+        Use Nessus UI to relaunch the saved scan.
+
+What should change after fixes
+
+    Critical Firefox findings (plugins 233646/238071/240333/242556) should clear once Firefox reports 141.0.3.
+
+macOS 15.x < 15.6 item (plugin 243030) should clear after the OS upgrade.
+
+Node.js critical bundles (171595/177518/179692/183390/190856/192945/201969/214404) should clear once node -v is ≥18.20.6.
+
+MySQL CPU advisories (202616/202620/214534/242314/242313) should resolve at 8.0.43.
+
+VMware Fusion HGFS (222492) clears at 13.6.3.
+
+
+
+
+CRITICAL vulnerabilities AND fixes
+
+Title: Firefox below 141.x
+Severity/CVSS: Critical (9.8)
+Affected: /Applications/Firefox.app (136.0.1)
+Description: Multiple advisories across 137–141 release train impacting memory safety and other issues; latest is 141.0.3 (Aug 7, 2025).
+
+
+Recommendation: Update to 141.0.3 via App Store or Mozilla site.
+Status: Planned
+
+Title: Node.js 18.12.1 multiple advisories
+Severity/CVSS: Critical to High (9.8 down)
+Affected: /usr/local/bin/node
+Description: Multiple security releases from 2023–2025 (HTTP/2 DoS, header smuggling, permission model, crypto).
+
+
+Recommendation: Upgrade to ≥18.20.6 (node@18 via Homebrew).
+Status: Planned
+
+Title: macOS 15.x < 15.6
+Severity/CVSS: High (7.8 V3 base typical)
+Affected: OS baseline
+Description: Apple 15.6 update includes numerous CVEs and hardening; security advisories urge immediate update.
+
+
+Recommendation: Update to macOS 15.6.
+Status: Planned
+
+Title: MySQL 8.0.36 below current CPU
+Severity/CVSS: Medium–Critical bundles (various)
+Affected: /usr/local/mysql/bin
+Description: Oracle CPUs Jan 2025 and July 2025; upgrade to ≥8.0.42/8.0.43 per “Patch Report”.
+
+
+Recommendation: Upgrade to 8.0.43 via Homebrew.
+Status: Planned
+
+Title: VMware Fusion 13.6.0
+Severity/CVSS: Medium–High (info disclosure)
+Affected: /Applications/VMware Fusion.app
+Description: VMSA-2025-0004 HGFS info disclosure (CVE-2025-22226); update to 13.6.3.
+
+
+Recommendation: Update VMware Fusion to 13.6.3.
+Status: Planned
+
+Title: Bonjour/mDNS advertising services
+Severity/CVSS: Info exposure
+Affected: UDP/5353; AirPlay/RAOP services visible
+Description: Host advertises services on LAN via mDNS[scan HTML].
+Recommendation: Disable AirPlay Receiver and unneeded sharing on untrusted networks.
+Status: Planned
