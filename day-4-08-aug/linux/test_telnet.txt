@@ -1,0 +1,1 @@
+Telnet test would target 127.0.0.1:23 or <PARROT_IP>:23 and is expected to be blocked due to deny rule on TCP/23.

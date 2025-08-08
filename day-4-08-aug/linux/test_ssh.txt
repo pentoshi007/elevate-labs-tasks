@@ -1,0 +1,1 @@
+SSH test would target <PARROT_IP>:22 and is expected to succeed due to allow rule on TCP/22.
