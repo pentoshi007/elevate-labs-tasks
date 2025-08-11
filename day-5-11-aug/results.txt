@@ -1,0 +1,117 @@
+Capture Summary
+
+    Interface: Wi‑Fi (macOS)
+
+    Local IP (10.x range): observed in frames
+
+    Subnet mask: 255.255.248.0
+
+    Duration: ~1–2 minutes
+
+    Total packets: ~60–90 (multiple captures shown)
+
+Protocols Identified
+
+    TCP
+
+    UDP
+
+    DNS
+
+    TLS/SSL (TLSv1.2/1.3 shown as TLSv… in Wireshark)
+
+    ICMP not seen in screenshots; if captured earlier, include
+
+    HTTP/HTTPS: HTTPS visible (port 443). HTTP not clearly shown in screenshots.
+
+Top Conversations (from screenshots)
+
+    10.102.139.x ↔ 104.90.6.178 (Akamai/edge over 443, TLS)
+
+    10.102.139.x ↔ 104.104.66.98 (over 443, TLS)
+
+    10.102.139.x ↔ 125.21.240.240 (443, TLS)
+
+    10.102.139.x ↔ 10.102.143.255 (UDP broadcasts, NBNS/NetBIOS/MDNS style)
+
+    10.102.139.x ↔ 10.102.139.8 / 10.102.139.9 (local TCP/UDP)
+
+    10.102.139.x ↔ 172.64.41.4 (TCP 443)
+
+    10.94.2.111 ↔ 10.102.139.8 (DNS queries/responses)
+
+    13.232.131.249 ↔ 10.102.139.8 (SSHv2 encrypted packets)
+
+Notable Packets/Events
+
+    TCP three-way handshakes on port 443:
+
+        SYN from 10.102.139.x → remote:443
+
+        SYN/ACK from remote → 10.102.139.x
+
+        ACK completing connection
+
+    TLS handshake sequences:
+
+        Client Hello from 10.102.139.x
+
+        Server Hello, Change Cipher Spec, Encrypted Extensions, Application Data
+
+    Application Data over TLS after handshake (encrypted payloads)
+
+    Connection teardowns:
+
+        FIN, ACK sequences between 10.102.139.x and remote 443 endpoints
+
+        Occasional “TCP Previous segment not captured” noted
+
+    DNS traffic:
+
+        Standard query for a1068.dscr.akamai.net (and other domains)
+
+        Standard query responses from DNS server 10.94.2.111
+
+    Local broadcast/announcement traffic:
+
+        NBNS/Browser “Host Announcement” frames to 10.102.143.255
+
+        UDP broadcasts from 10.102.137.x/10.102.139.x to 10.102.143.255 ports 54915 etc.
+
+    SSHv2 encrypted packets:
+
+        13.232.131.249 ↔ 10.102.139.8 (server and client encrypted payloads on TCP/22)
+
+Ports Observed
+
+    443/tcp (HTTPS)
+
+    53/udp (DNS)
+
+    22/tcp (SSH)
+
+    137–139/udp (NBNS/NetBIOS/Browser announcements)
+
+    High ephemeral UDP/TCP source ports (e.g., 54915, 61522, 61530, etc.)
+
+Key Observations
+
+    Majority of traffic is HTTPS to CDN/edge hosts (Akamai), indicating normal web activity.
+
+    Successful TCP handshakes and clean FIN/ACK terminations; a few missing segments noted but streams continue, suggesting transient packet loss or late start of capture.
+
+    TLS negotiations complete with Server Hello and cipher changes, followed by encrypted application data.
+
+    Internal DNS resolving external CDN hostnames; responses received without errors.
+
+    Routine LAN broadcast traffic present (NBNS/Host Announcements).
+
+    SSHv2 encrypted traffic observed to external IP 13.232.131.249, indicating an active or recent SSH session.
+
+Security Notes
+
+    No obvious plaintext credentials or HTTP data visible; traffic predominantly encrypted (TLS/SSH).
+
+    Presence of “TCP Previous segment not captured” indicates not all packets were captured; for forensics, consider longer capture or capture filter adjustments.
+
+    Verify SSH destination (13.232.131.249) is expected; otherwise, investigate authorized sessions.
