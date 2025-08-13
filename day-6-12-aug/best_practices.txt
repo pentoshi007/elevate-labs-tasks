@@ -1,0 +1,21 @@
+Best Practices for Strong Passwords - Summary by Aniket Pandey
+
+As part of Day 6 of my Elevate Labs internship, I compiled a list of best practices for creating and managing strong passwords based on my research and tests with online strength checkers. These help make passwords more resistant to attacks like brute force or dictionary methods. Here's what I learned:
+
+    Use Sufficient Length: Aim for at least 12-16 characters. Longer passwords are much harder to crack because they create more possible combinations. For example, an 8-character password might take days to brute force, but a 16-character one could take centuries.
+
+    Include a Mix of Character Types: Combine uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and special symbols (!@#$%^&*). This adds complexity and makes dictionary attacks less effective since they rely on common words without variations.
+
+    Avoid Common or Predictable Patterns: Don't use easily guessable info like your name, birthday, pet's name, or sequences like "123456" or "qwerty." Steer clear of common words from dictionaries, as they're the first things attackers try.
+
+    Use Passphrases for Memorability: Create a passphrase by stringing together random words with numbers and symbols, like "BlueHorseBatteryStaple!42." It's easier to remember than a jumble of characters but still very secure due to length.
+
+    Make Each Password Unique: Never reuse the same password across different accounts. If one site gets hacked, attackers could use the password to access others. Tools like password managers can help generate and store unique ones.
+
+    Enable Multi-Factor Authentication (MFA): Always turn on MFA where available. It adds extra security layers, like a code sent to your phone, so even if someone guesses your password, they can't get in without the second factor.
+
+    Regularly Update Passwords: Change passwords periodically, especially after a data breach or if you suspect compromise. Avoid small changes like just adding a "1" to the end—make significant updates.
+
+    Use Password Managers: These tools can generate strong, random passwords and store them securely. They also autofill logins, reducing the temptation to use weak or repeated passwords.
+
+Common Mistakes to Avoid: Based on my strength tests, short passwords score low, and lacking variety (e.g., all letters) makes them weak. Also, writing passwords down on paper or sharing them insecurely is risky.
