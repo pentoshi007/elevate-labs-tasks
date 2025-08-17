@@ -1,0 +1,16 @@
+Suspicious Extensions Identified:
+
+Extension: Volume Booster
+Reason for Suspicion: 
+- Requires "Access your data for all websites" as core functionality
+- Volume amplification should not require website data access
+- Unknown publisher with broad permissions
+- Potential data harvesting concern
+Action Taken: Flagged for removal due to excessive required permissions
+
+Extension: Video Speed Controller
+Reason for Suspicion:
+- Requests optional permission to "Access your data for all websites"
+- Video speed control shouldn't require broad website access
+- Unknown publisher verification needed
+Action Taken: Monitored - permissions currently restricted, needs publisher verification

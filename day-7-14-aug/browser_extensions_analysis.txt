@@ -1,0 +1,33 @@
+Browser Extension Security Analysis - Day 7
+
+Firefox Extensions Found:
+
+1. Extension Name: uBlock Origin
+   Version: Unknown (Please confirm version manually in Firefox addon manager)
+   Permissions: Blocks ads, access to websites data
+   Publisher: Raymond Hill (gorhill)
+   Users: Over 10 million (popular extension)
+   Last Updated: Frequent (well maintained)
+   Assessment: Safe
+
+2. Extension Name: Video Speed Controller
+   Version: 1.0.6
+   Permissions: Access your data for all websites (optional permission)
+   Publisher: Unknown (requires verification)
+   Users: Moderate popularity
+   Last Updated: July 12, 2025
+   Assessment: Monitor permissions; generally safe if from reputable source
+
+3. Extension Name: Volume Booster
+   Version: 1.1
+   Permissions: Access your data for all websites (required permission)
+   Publisher: Unknown (requires verification)
+   Users: Less popular, verify trustworthiness
+   Last Updated: July 12, 2025
+   Assessment: Potentially suspicious due to high access and less known publisher; investigate further or consider removal
+
+Recommendations:
+- Verify user reviews and publisher reputation online.
+- Remove extensions with unknown or suspicious publishers or unnecessary permissions.
+- Keep uBlock Origin as it is a widely trusted ad-blocker.
+

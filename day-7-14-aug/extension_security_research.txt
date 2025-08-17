@@ -1,0 +1,34 @@
+Browser Extension Security Research:
+
+How Malicious Extensions Work:
+- Data harvesting: Collecting browsing history, passwords, personal information
+- Ad injection: Modifying web pages to insert malicious advertisements
+- Cryptocurrency mining: Using browser resources for unauthorized mining
+- Session hijacking: Stealing authentication tokens and cookies
+- Keylogging: Recording keystrokes to capture sensitive information
+
+Common Attack Vectors:
+- Social engineering: Disguising malware as useful tools
+- Permission escalation: Requesting minimal permissions initially, then expanding
+- Update mechanisms: Pushing malicious updates to previously safe extensions
+- Typosquatting: Creating extensions with names similar to popular ones
+
+Protection Mechanisms:
+- Mozilla's review process for Firefox Add-ons
+- Sandboxing: Limiting extension access to browser APIs
+- Permission systems: Granular control over extension capabilities
+- User reviews and ratings systems
+- Automatic security scanning
+
+Notable Security Cases:
+- Web of Trust (WOT): Collected and sold users' browsing data
+- Hola VPN: Used users' devices as exit nodes without consent
+- Multiple Chrome extensions: Sold to malicious actors who updated them with malware
+- Adblock Plus controversy: Allowing "acceptable ads" for payment
+
+Red Flags for Suspicious Extensions:
+- Excessive permissions not related to functionality
+- Unknown or unverified publishers
+- Poor reviews or sudden negative feedback
+- Requests for financial or personal data access
+- Very few users despite being available for long periods
