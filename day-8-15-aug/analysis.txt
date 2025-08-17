@@ -1,0 +1,20 @@
+Task: Identify and Remove Suspicious Browser Extensions (Note: The PDF title seems to be a mistake, the task is about VPNs)
+
+Original State (Before VPN):
+- My public IP address was [Your Original IP Address, e.g., 10.x.x.x type from your home network] located in [Your City, India].
+- Internet Speed: 82.47 Mbps Download / 72.86 Mbps Upload.
+
+VPN Connection Details:
+- VPN Service Used: ProtonVPN (Free Tier)
+- Server Connected: Japan (JP-FREE#3)
+
+State After Connecting to VPN:
+- New Public IP Address: 45.14.71.9
+- New Location: Osaka, Japan
+- Internet Speed: 77.06 Mbps Download / 23.55 Mbps Upload.
+- Screenshot of Connection Status: Screenshot-2025-08-17-at-7.18.48-PM.jpg
+
+Observations:
+- My public IP address and location successfully changed to Japan, masking my real location.
+- The download speed saw a minor decrease, which is expected due to the traffic being routed through the VPN server.
+- The upload speed was significantly lower, which is a common trade-off when using a free VPN service, especially one located far away.
